@@ -1,5 +1,15 @@
-#include "main.h"
+/*
+ * File: 100-elf_header.c
+ * Auth: Brennan D Baraban
+ */
 
+#include <elf.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 void check_elf(unsigned char *e_ident);
 void print_magic(unsigned char *e_ident);
@@ -255,13 +265,16 @@ void close_elf(int elf)
 }
 
 /**
-* main - displays the information contained in the ELF header
-* at the start of an ELF file.
-* @argc: count argument
-* @argv: vector arguments
-* Return: 0 if the file's elf header was read successfully
-*/
-
+ * main - Displays the information contained in the
+ *        ELF header at the start of an ELF file.
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
+ *
+ * Return: 0 on success.
+ *
+ * Description: If the file is not an ELF File or
+ *              the function fails - exit code 98.
+ */
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	Elf64_Ehdr *header;
@@ -304,3 +317,4 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	close_elf(o);
 	return (0);
 }
+
